@@ -1,0 +1,121 @@
+id: 0-1.0.r1/0
+type: dir
+count: 0
+cpath: /DownloadedFiles
+copyroot: 0 /
+
+id: 3-1.0.r1/73
+type: dir
+count: 0
+cpath: /Common/②子会社利益差異分析
+copyroot: 0 /
+
+id: a-1.0.r1/169
+type: dir
+count: 0
+cpath: /Common/①計画・予算系/EIGSファイル
+copyroot: 0 /
+
+PLAIN
+K 16
+EIGSファイル
+V 16
+dir a-1.0.r1/169
+END
+ENDREP
+id: 6-1.0.r1/335
+type: dir
+count: 0
+text: 1 274 48 48 65ab9f97463cbc20aacab593237e290b
+cpath: /Common/①計画・予算系
+copyroot: 0 /
+
+id: 8-1.0.r1/474
+type: dir
+count: 0
+cpath: /Common/③子会社での修正仕訳機能/EIGSファイル
+copyroot: 0 /
+
+PLAIN
+K 16
+EIGSファイル
+V 16
+dir 8-1.0.r1/474
+END
+ENDREP
+id: 5-1.0.r1/655
+type: dir
+count: 0
+text: 1 594 48 48 10b24707d8520d6564d56dc91227d6fb
+cpath: /Common/③子会社での修正仕訳機能
+copyroot: 0 /
+
+id: 7-1.0.r1/809
+type: dir
+count: 0
+cpath: /Common/○お客様シート
+copyroot: 0 /
+
+PLAIN
+K 21
+①計画・予算系
+V 16
+dir 6-1.0.r1/335
+K 30
+②子会社利益差異分析
+V 15
+dir 3-1.0.r1/73
+K 36
+③子会社での修正仕訳機能
+V 16
+dir 5-1.0.r1/655
+K 21
+○お客様シート
+V 16
+dir 7-1.0.r1/809
+END
+ENDREP
+id: 2-1.0.r1/1133
+type: dir
+count: 0
+text: 1 897 223 223 4f76591f0a572992cc442aedd0de15e1
+cpath: /Common
+copyroot: 0 /
+
+PLAIN
+K 6
+Common
+V 17
+dir 2-1.0.r1/1133
+K 15
+DownloadedFiles
+V 14
+dir 0-1.0.r1/0
+END
+ENDREP
+id: 0.0.r1/1345
+type: dir
+pred: 0.0.r0/17
+count: 1
+text: 1 1253 79 79 027b938b013e429294f84700ea5dd54e
+cpath: /
+copyroot: 0 /
+
+_0.0.t0-0 add-dir false false /DownloadedFiles
+
+_8.0.t0-0 add-dir false false /Common/③子会社での修正仕訳機能/EIGSファイル
+
+_a.0.t0-0 add-dir false false /Common/①計画・予算系/EIGSファイル
+
+_3.0.t0-0 add-dir false false /Common/②子会社利益差異分析
+
+_7.0.t0-0 add-dir false false /Common/○お客様シート
+
+_2.0.t0-0 add-dir false false /Common
+
+_5.0.t0-0 add-dir false false /Common/③子会社での修正仕訳機能
+
+_6.0.t0-0 add-dir false false /Common/①計画・予算系
+
+
+1345 1472

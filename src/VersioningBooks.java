@@ -1,0 +1,121 @@
+import org.tmatesoft.svn.core.*;
+import org.tmatesoft.svn.core.io.*;
+import org.tmatesoft.svn.core.wc.*;
+import org.tmatesoft.svn.core.auth.*;
+import org.tmatesoft.svn.core.internal.io.fs.*;
+import org.tmatesoft.svn.core.io.diff.*;
+import org.tmatesoft.svn.core.internal.wc.admin.SVNWCAccess;
+import org.tmatesoft.svn.core.internal.wc.*;
+import org.tmatesoft.svn.core.wc.admin.*;
+
+import java.io.*;
+import java.util.*;
+import java.text.MessageFormat;
+
+public class VersioningBooks{
+  String rootPath;
+  String FSRepoURI;
+  public void addAll(String rootPath,String FSRepoURI) {
+    this.rootPath=rootPath;
+    this.FSRepoURI=FSRepoURI;
+
+    FSRepositoryFactory.setup();
+    File reposRoot = new File(FSRepoURI);
+    SVNAdminClient adminClient = SVNClientManager.newInstance().getAdminClient();
+    try{
+      adminClient.doCreateRepository(reposRoot,null,true,false,false,false);
+    }catch(SVNException e){
+      System.err.println("repository already exists");
+    }
+    SVNURL reposURL=null;
+    SVNRepository repos=null;
+    try{
+      reposURL = SVNURL.fromFile(reposRoot);
+      // svn add 
+      repos = SVNRepositoryFactory.create(reposURL);
+    }catch(SVNException e){
+      System.err.println("error occured while connecting repository");
+      e.printStackTrace();
+    }
+    ISVNEditor commitEditor=null;
+    try{
+      commitEditor = repos.getCommitEditor("initializing the repository with Ciel",null,false,null,null);
+      commitEditor.openRoot(SVNRepository.INVALID_REVISION);
+    }catch(SVNException e){
+      System.err.println("error occured while creating ISVNEditor class object");
+    }
+    SVNDeltaGenerator deltaGenerator = new SVNDeltaGenerator();
+
+    File rootPathF = new File(rootPath);
+    File[] list = rootPathF.listFiles();
+    if(list==null ) System.err.println("there is no file");
+    Queue<File> que = new LinkedList<File>();
+    for(int i=0;i<list.length;i++) que.offer(list[i]);
+    while(que.size()>0){
+      File f = que.poll();
+      if(f.isDirectory()){
+	try{
+	  String filepath = f.getAbsolutePath().replace(rootPathF.getAbsolutePath(),"");
+	  if(f.getName().startsWith(".")) continue;
+	  System.out.println("add dir : filepath : "+filepath);
+	  try{
+	    commitEditor.openDir(filepath,SVNRepository.INVALID_REVISION);
+	    System.err.println("directory already exists.");
+	    continue;
+	  } catch(SVNException e){}
+	  commitEditor.addDir(filepath,null,SVNRepository.INVALID_REVISION);
+	  commitEditor.closeDir();
+	  list = f.listFiles();
+	  for(int i=0;i<list.length;i++)  que.offer(list[i]);
+	}catch(SVNException e){
+	  System.err.println("error occured while creating directory");
+	  e.printStackTrace();
+	}
+      }else{
+	try{
+	  String filepath = f.getAbsolutePath().replace(rootPathF.getAbsolutePath(),"");
+	  File file = new File(rootPath,filepath);
+	  String checksum=null;
+	  try{
+	    commitEditor.openFile(filepath,SVNRepository.INVALID_REVISION);
+	    commitEditor.applyTextDelta(filepath,null);
+	    checksum = deltaGenerator.sendDelta(filepath,new FileInputStream(file),commitEditor,true);
+	    //	    checksum = deltaGenerator.sendDelta(filepath,null,0,
+	    //			     new FileInputStream(file),commitEditor,true);
+	  }catch(SVNException e){
+	    commitEditor.addFile(filepath,null,SVNRepository.INVALID_REVISION);
+	    commitEditor.applyTextDelta(filepath,null);
+	    checksum = deltaGenerator.sendDelta(filepath,new FileInputStream(file),commitEditor,true);
+	  }
+	  System.out.println(filepath+" checksum:"+checksum);
+	  commitEditor.closeFile(filepath,checksum);
+	}catch(SVNException e){
+	  System.err.println("error occured while adding file");
+	  e.printStackTrace();
+	}catch(FileNotFoundException e){
+	  System.err.println("error occured while adding file");
+	  e.printStackTrace();
+	}
+	
+      }
+    }
+    try{
+      commitEditor.closeEdit();
+    }catch(Exception e){}
+    
+  }
+  
+  public static void main(String[] args) throws Exception{
+    if(args.length<2){
+      StringBuffer msg = new StringBuffer();
+      msg.append("usage:\n");
+      msg.append("java -jar VersioningBooks <DirPath> <RepoPath>\n");
+      System.err.println(msg.toString());
+      System.exit(0);
+    }
+    VersioningBooks vb = new VersioningBooks();
+    //    vb.addAll("/home/yama/diva/workspace/Ciel/WEB-INF/CielFiles","/home/yama/diva/work/SVNKit/repos");
+    System.out.println(MessageFormat.format("params: {0} {1}",args));
+    vb.addAll(args[0],args[1]);
+  }
+}

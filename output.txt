@@ -1,0 +1,33 @@
+Buildfile: build.xml
+
+clean:
+   [delete] Deleting directory /home/yama/diva/work/SVNKit/build
+   [delete] Deleting directory /home/yama/diva/work/SVNKit/work
+
+compile:
+    [mkdir] Created dir: /home/yama/diva/work/SVNKit/build
+    [javac] Compiling 2 source files to /home/yama/diva/work/SVNKit/build
+    [javac] /home/yama/diva/work/SVNKit/src/VersioningBooks.java:118: 警告:最終パラメータの不正確な引数型を持った可変引数メソッドの非可変引数呼び出し;
+    [javac] 可変引数呼び出しに関しては java.lang.Object にキャストします。
+    [javac] 非可変引数呼び出しに関しては java.lang.Object[] にキャストしてこの警告を出さないようにします。
+    [javac]     System.out.println(MessageFormat.format("params: {0} {1}",args));
+    [javac]                                                               ^
+    [javac] 警告 1 個
+
+jar:
+      [jar] Building jar: /home/yama/diva/work/SVNKit/VersioningBooks.jar
+
+run:
+    [mkdir] Created dir: /home/yama/diva/work/SVNKit/work
+     [java] params: /home/yama/diva/workspace/Ciel/WEB-INF/CielFiles /home/yama/diva/work/SVNKit/repos
+     [java] repository already exists
+     [java] add dir : filepath : /DownloadedFiles
+     [java] directory already exists.
+     [java] /新規ファイル checksum:d41d8cd98f00b204e9800998ecf8427e
+     [java] add dir : filepath : /Common
+     [java] directory already exists.
+     [java] /a.xls checksum:03147ef3fd9f357c9b378c5e95fdd409
+     [java] /NewEigs%3F%3F.xls checksum:18387a73942f840d98005877f8561e6a
+
+BUILD SUCCESSFUL
+Total time: 3 seconds

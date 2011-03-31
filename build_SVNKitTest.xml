@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SVNKit" default="run" basedir="."> 
+	<description>SVNKit</description>
+
+	<property name="compile.src" location="./src" />
+	<property name="compile.dst" location="./build" />
+	<property name="lib.jar" location="./lib" />
+	<property name="jar.dir" location="." />
+	<property name="jar.name" value="SVNKitTest.jar" />
+	<property name="repository.path" value="repos" />
+	<property name="working.path" value="work" />
+
+	<path id="lib.classpath">
+		<fileset dir="./lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${jar.dir}">
+			<include name="${jar.name}" />
+		</fileset>
+	</path>
+
+	<pathconvert property="string.classpath" pathsep=" ">
+		<path refid="lib.classpath" />
+		<map from="${jar.dir}\" to="./" />
+	</pathconvert>
+
+
+	<target name="clean">
+		<delete dir="${compile.dst}" />
+		<delete dir="${repository.path}" />
+		<delete dir="${working.path}" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${compile.dst}" />
+		<javac srcdir="${compile.src}" destdir="${compile.dst}" encoding="UTF-8">
+			<classpath refid="lib.classpath" /> 
+		</javac>
+	</target>
+	<target name="jar" depends="compile">
+		<jar destfile="${jar.dir}\${jar.name}" basedir="${compile.dst}">
+			<manifest>
+				<attribute name="Main-Class" value="SVNKit" />
+				<attribute name="Class-Path" value="${string.classpath}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<mkdir dir="${repository.path}" />
+		<mkdir dir="${working.path}" />
+		<java jar="${jar.dir}\${jar.name}" fork="true" >
+			<classpath refid="lib.classpath" /> 
+			<!--
+			<arg value="50" />
+			<arg value="output.txt" />
+			-->
+		</java>
+	</target>
+
+</project>
