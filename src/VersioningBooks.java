@@ -27,6 +27,7 @@ public class VersioningBooks{
     }catch(SVNException e){
       System.err.println("repository already exists");
     }
+
     SVNURL reposURL=null;
     SVNRepository repos=null;
     try{
@@ -37,9 +38,10 @@ public class VersioningBooks{
       System.err.println("error occured while connecting repository");
       e.printStackTrace();
     }
+
     ISVNEditor commitEditor=null;
     try{
-      commitEditor = repos.getCommitEditor("initializing the repository with Ciel",null,false,null,null);
+      commitEditor = repos.getCommitEditor("initilizing or refreshing the repository with Ciel",null,false,null,null);
       commitEditor.openRoot(SVNRepository.INVALID_REVISION);
     }catch(SVNException e){
       System.err.println("error occured while creating ISVNEditor class object");
@@ -50,21 +52,48 @@ public class VersioningBooks{
     File[] list = rootPathF.listFiles();
     if(list==null ) System.err.println("there is no file");
     Queue<File> que = new LinkedList<File>();
-    for(int i=0;i<list.length;i++) que.offer(list[i]);
+    que.add(rootPathF);
+    SVNNodeKind nk=null;
+    SVNRepository _repos=null;
+    try{
+      _repos = SVNRepositoryFactory.create(reposURL);
+    }catch(SVNException e){
+      System.err.println("error occured while creating _repos");
+      e.printStackTrace();
+    }
     while(que.size()>0){
       File f = que.poll();
       if(f.isDirectory()){
 	try{
-	  String filepath = f.getAbsolutePath().replace(rootPathF.getAbsolutePath(),"");
+	  String repopath = f.getAbsolutePath().replace(rootPathF.getAbsolutePath(),"");
 	  if(f.getName().startsWith(".")) continue;
-	  System.out.println("add dir : filepath : "+filepath);
-	  try{
-	    commitEditor.openDir(filepath,SVNRepository.INVALID_REVISION);
+	  nk = _repos.checkPath(repopath,SVNRepository.INVALID_REVISION);
+	  if(nk.compareTo(SVNNodeKind.DIR)==0){
+	    // if DIR exists
 	    System.err.println("directory already exists.");
-	    continue;
-	  } catch(SVNException e){}
-	  commitEditor.addDir(filepath,null,SVNRepository.INVALID_REVISION);
-	  commitEditor.closeDir();
+	    
+	    // delete deleted files from repository
+	    String[] filelist = f.list();
+	    if(repopath.length()>1 && repopath.charAt(repopath.length()-1)!='/') repopath+="/";
+	    Collection<SVNDirEntry> rlist=_repos.getDir(repopath,SVNRepository.INVALID_REVISION,null,(Collection)null);
+	    Iterator<SVNDirEntry> ite = rlist.iterator();
+	    SVNDirEntry repo_file=null;
+	    while(ite.hasNext()){
+	      repo_file=ite.next();
+	      if( ! new File(rootPath,repopath+repo_file.getName() ).exists() ){
+		try{
+		  commitEditor.deleteEntry(repopath+repo_file.getName(),SVNRepository.INVALID_REVISION );
+		}catch(SVNException e){
+		  System.out.println("failed to delete");
+		  e.printStackTrace();
+		}
+	      }
+	    }
+	  }else{
+	    // if DIR does not exist
+	    commitEditor.addDir(repopath,null,SVNRepository.INVALID_REVISION);
+	    commitEditor.closeDir();
+	  }
 	  list = f.listFiles();
 	  for(int i=0;i<list.length;i++)  que.offer(list[i]);
 	}catch(SVNException e){
@@ -73,22 +102,24 @@ public class VersioningBooks{
 	}
       }else{
 	try{
-	  String filepath = f.getAbsolutePath().replace(rootPathF.getAbsolutePath(),"");
-	  File file = new File(rootPath,filepath);
+	  String repopath = f.getAbsolutePath().replace(rootPathF.getAbsolutePath(),"");
+	System.out.println("add file : "+repopath);
+	  File file = new File(rootPath,repopath);
 	  String checksum=null;
-	  try{
-	    commitEditor.openFile(filepath,SVNRepository.INVALID_REVISION);
-	    commitEditor.applyTextDelta(filepath,null);
-	    checksum = deltaGenerator.sendDelta(filepath,new FileInputStream(file),commitEditor,true);
-	    //	    checksum = deltaGenerator.sendDelta(filepath,null,0,
+	  nk = _repos.checkPath(repopath,SVNRepository.INVALID_REVISION);
+	  if(nk.compareTo(SVNNodeKind.FILE)==0){
+	    commitEditor.openFile(repopath,SVNRepository.INVALID_REVISION);
+	    commitEditor.applyTextDelta(repopath,null);
+	    checksum = deltaGenerator.sendDelta(repopath,new FileInputStream(file),commitEditor,true);
+	    //	    checksum = deltaGenerator.sendDelta(repopath,null,0,
 	    //			     new FileInputStream(file),commitEditor,true);
-	  }catch(SVNException e){
-	    commitEditor.addFile(filepath,null,SVNRepository.INVALID_REVISION);
-	    commitEditor.applyTextDelta(filepath,null);
-	    checksum = deltaGenerator.sendDelta(filepath,new FileInputStream(file),commitEditor,true);
+	  }else{
+	    commitEditor.addFile(repopath,null,SVNRepository.INVALID_REVISION);
+	    commitEditor.applyTextDelta(repopath,null);
+	    checksum = deltaGenerator.sendDelta(repopath,new FileInputStream(file),commitEditor,true);
 	  }
-	  System.out.println(filepath+" checksum:"+checksum);
-	  commitEditor.closeFile(filepath,checksum);
+	  System.out.println(repopath+" checksum:"+checksum);
+	  commitEditor.closeFile(repopath,checksum);
 	}catch(SVNException e){
 	  System.err.println("error occured while adding file");
 	  e.printStackTrace();
@@ -99,6 +130,7 @@ public class VersioningBooks{
 	
       }
     }
+    
     try{
       commitEditor.closeEdit();
     }catch(Exception e){}
@@ -115,7 +147,7 @@ public class VersioningBooks{
     }
     VersioningBooks vb = new VersioningBooks();
     //    vb.addAll("/home/yama/diva/workspace/Ciel/WEB-INF/CielFiles","/home/yama/diva/work/SVNKit/repos");
-    System.out.println(MessageFormat.format("params: {0} {1}",args));
+    System.out.println(MessageFormat.format("params: {0} {1}",(Object[])args));
     vb.addAll(args[0],args[1]);
   }
 }

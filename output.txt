@@ -6,13 +6,9 @@ clean:
 
 compile:
     [mkdir] Created dir: /home/yama/diva/work/SVNKit/build
-    [javac] Compiling 2 source files to /home/yama/diva/work/SVNKit/build
-    [javac] /home/yama/diva/work/SVNKit/src/VersioningBooks.java:118: 警告:最終パラメータの不正確な引数型を持った可変引数メソッドの非可変引数呼び出し;
-    [javac] 可変引数呼び出しに関しては java.lang.Object にキャストします。
-    [javac] 非可変引数呼び出しに関しては java.lang.Object[] にキャストしてこの警告を出さないようにします。
-    [javac]     System.out.println(MessageFormat.format("params: {0} {1}",args));
-    [javac]                                                               ^
-    [javac] 警告 1 個
+    [javac] Compiling 3 source files to /home/yama/diva/work/SVNKit/build
+    [javac] 注:/home/yama/diva/work/SVNKit/src/VersioningBooks.java の操作は、未チェックまたは安全ではありません。
+    [javac] 注:詳細については、-Xlint:unchecked オプションを指定して再コンパイルしてください。
 
 jar:
       [jar] Building jar: /home/yama/diva/work/SVNKit/VersioningBooks.jar
@@ -21,13 +17,161 @@ run:
     [mkdir] Created dir: /home/yama/diva/work/SVNKit/work
      [java] params: /home/yama/diva/workspace/Ciel/WEB-INF/CielFiles /home/yama/diva/work/SVNKit/repos
      [java] repository already exists
-     [java] add dir : filepath : /DownloadedFiles
      [java] directory already exists.
-     [java] /新規ファイル checksum:d41d8cd98f00b204e9800998ecf8427e
-     [java] add dir : filepath : /Common
      [java] directory already exists.
+     [java] directory already exists.
+     [java] add file : /a.xls
      [java] /a.xls checksum:03147ef3fd9f357c9b378c5e95fdd409
+     [java] add file : /NewEigs%3F%3F.xls
      [java] /NewEigs%3F%3F.xls checksum:18387a73942f840d98005877f8561e6a
+     [java] add file : /DownloadedFiles/GGL spreadsheet research2.xls
+     [java] /DownloadedFiles/GGL spreadsheet research2.xls checksum:cdb217bccf6d7371bba37c669b9d2d50
+     [java] add file : /DownloadedFiles/GGL spreadsheet research.xls
+     [java] /DownloadedFiles/GGL spreadsheet research.xls checksum:cdb217bccf6d7371bba37c669b9d2d50
+     [java] add file : /Common/680_Asset Retirement Obligations.xls
+     [java] /Common/680_Asset Retirement Obligations.xls checksum:12adfb19a5d6cca2263f007196fe7ca4
+     [java] add file : /Common/DEMO_J_15(申告調整明細).xls
+     [java] /Common/DEMO_J_15(申告調整明細).xls checksum:d89e95ecb0fe11203227fc10f9738492
+     [java] add file : /Common/Inventory Count.xls
+     [java] /Common/Inventory Count.xls checksum:f8169c9154d20511ef334fceb77486c4
+     [java] add file : /Common/Individual Financial Statements.xls
+     [java] /Common/Individual Financial Statements.xls checksum:b830771dde6c8a30f69c3c256c3cf784
+     [java] add file : /Common/EIGS_SAMPLE_期首個別財務諸表.xls
+     [java] /Common/EIGS_SAMPLE_期首個別財務諸表.xls checksum:94dac03d57193aed56df9e925bcac1f2
+     [java] add file : /Common/67A_Details of Borrowings.xls
+     [java] /Common/67A_Details of Borrowings.xls checksum:5a0746d32e8cce79f94d8170ee6568c4
+     [java] add file : /Common/DEMO_J_04(増減明細).xls
+     [java] /Common/DEMO_J_04(増減明細).xls checksum:206d69aef3e095d229a139a354adfaf2
+     [java] add file : /Common/61K_Available Overdrafts and Commitments.xls
+     [java] /Common/61K_Available Overdrafts and Commitments.xls checksum:fbb5cd6fd577f769619c885b2a78df97
+     [java] add file : /Common/CustomerSheet3.xls
+     [java] /Common/CustomerSheet3.xls checksum:683c4648877eb07e6e5ece30766644e5
+     [java] add file : /Common/650_Retirement Benefit Obligation.xls
+     [java] /Common/650_Retirement Benefit Obligation.xls checksum:2573a7dea66aa62ecfea1f1192131f45
+     [java] add file : /Common/Foreign Sales.xls
+     [java] /Common/Foreign Sales.xls checksum:6620f6659a29bb166d71beed0d94a6c9
+     [java] add file : /Common/Book1.xls
+     [java] /Common/Book1.xls checksum:3e07fdc509a3143f6a76fa79419ef42d
+     [java] add file : /Common/[項目抽出]合算レポートのイメージ.xls
+     [java] /Common/[項目抽出]合算レポートのイメージ.xls checksum:31a186ab33fe02be50c780afc5636f4f
+     [java] add file : /Common/[項目抽出]J07_1_東京.xls
+     [java] /Common/[項目抽出]J07_1_東京.xls checksum:af8f17db5dc3b92ed77508cedecc2c53
+     [java] add file : /Common/601_Cover and Contents.xls
+     [java] /Common/601_Cover and Contents.xls checksum:e4d85498038ae8a4fcc46a6e0638a430
+     [java] add file : /Common/Book1_DIVA(UK).xls
+     [java] /Common/Book1_DIVA(UK).xls checksum:f2eb201936e563ab7315db7ed6182954
+     [java] add file : /Common/64A_Securities.xls
+     [java] /Common/64A_Securities.xls checksum:d0d7d3043fe22b7052f11a02d7ab8fd4
+     [java] add file : /Common/コピー ～ DEMO_J_02(個別財務諸表).xls
+     [java] /Common/コピー ～ DEMO_J_02(個別財務諸表).xls checksum:a73d936f12b2fd364e128b49e9ef9e1e
+     [java] add file : /Common/EIGS_SAMPLE_特別損益の内訳.xls
+     [java] /Common/EIGS_SAMPLE_特別損益の内訳.xls checksum:84529a3677500b8d38fd1817b92892a5
+     [java] directory already exists.
+     [java] add file : /Common/640_Lease Trades.xls
+     [java] /Common/640_Lease Trades.xls checksum:a31f3d7fdb7e382dea980ff70d4bb3c6
+     [java] add file : /Common/Segment Information for Disclosure.xls
+     [java] /Common/Segment Information for Disclosure.xls checksum:e28b5e2958801f5f30ef1b14df2dfdeb
+     [java] add file : /Common/DEMO_J_01(表紙).xls
+     [java] /Common/DEMO_J_01(表紙).xls checksum:044b094738f3167a88c3a971deac363d
+     [java] add file : /Common/EIGS_SAMPLE_セグメント別勘定科目明細.xls
+     [java] /Common/EIGS_SAMPLE_セグメント別勘定科目明細.xls checksum:489f87035271fb13f62ccd251d40e106
+     [java] add file : /Common/EIGS_SAMPLE_相手先別明細.xls
+     [java] /Common/EIGS_SAMPLE_相手先別明細.xls checksum:310e0c27fbeee459a8e1d6dfc0ade201
+     [java] add file : /Common/[項目抽出]J07_1_大阪.xls
+     [java] /Common/[項目抽出]J07_1_大阪.xls checksum:31bb1c524b15655fa99ffa7fa39fcade
+     [java] add file : /Common/64K_Derivatives.xls
+     [java] /Common/64K_Derivatives.xls checksum:8e268ca4f83d4cc33f489672ecb925d3
+     [java] add file : /Common/61A_Contingency Liabilities.xls
+     [java] /Common/61A_Contingency Liabilities.xls checksum:807ec2d9555ea1ef65d2e75d204f4c25
+     [java] add file : /Common/Intercompany Transaction.xls
+     [java] /Common/Intercompany Transaction.xls checksum:be2f9bd23f5523351faeae799c35acc4
+     [java] add file : /Common/CustomerSheet2.xls
+     [java] /Common/CustomerSheet2.xls checksum:60b2cdbc0c00d83b0d4cd4510522e96b
+     [java] directory already exists.
+     [java] add file : /Common/[項目抽出]BookMaster.xls
+     [java] /Common/[項目抽出]BookMaster.xls checksum:2ff18bbe8bbab64e4270b32fa487608e
+     [java] add file : /Common/66A_Infomation of Major Customers.xls
+     [java] /Common/66A_Infomation of Major Customers.xls checksum:9f131f9dfb7de4462bca4da400637177
+     [java] add file : /Common/DEMO_J_02(個別財務諸表).xls
+     [java] /Common/DEMO_J_02(個別財務諸表).xls checksum:8b4b524dd94d91ee17a08bdd8d932b7d
+     [java] add file : /Common/Book1_ディーバ.xls
+     [java] /Common/Book1_ディーバ.xls checksum:f2eb201936e563ab7315db7ed6182954
+     [java] add file : /Common/CustomerSheet1.xls
+     [java] /Common/CustomerSheet1.xls checksum:c60f4b94cc5c5e872332e75c40796b7c
+     [java] add file : /Common/デモ用マスタPC修正内容一覧（2010年5月）.txt
+     [java] /Common/デモ用マスタPC修正内容一覧（2010年5月）.txt checksum:5545a2d5fa84a8e98cd270ae7b246724
+     [java] add file : /Common/675_Details of Bonds.xls
+     [java] /Common/675_Details of Bonds.xls checksum:f22d03865b37522e6bfb3da22d365fb7
+     [java] add file : /Common/DEMO_J_11(予算データ).xls
+     [java] /Common/DEMO_J_11(予算データ).xls checksum:5b1efce778838364b46d094babc6e9cb
+     [java] directory already exists.
+     [java] add file : /Common/Increase(Decrease) Details by Account.xls
+     [java] /Common/Increase(Decrease) Details by Account.xls checksum:860f60dde22861eee5c082ce4717feba
+     [java] add file : /Common/63P_Significant Nonfund Transactions.xls
+     [java] /Common/63P_Significant Nonfund Transactions.xls checksum:4be8b1681262fbae0e6217a01a0d16aa
+     [java] add file : /Common/[単純合算]レポート_人員情報.xls
+     [java] /Common/[単純合算]レポート_人員情報.xls checksum:35654ee4ea4c3f3e8df587430f58c8f2
+     [java] add file : /Common/DEMO_J_06(人員情報).xls
+     [java] /Common/DEMO_J_06(人員情報).xls checksum:11dc3a02fe78473dc28c410b46e71f9f
+     [java] add file : /Common/Accounting Details by Segment.xls
+     [java] /Common/Accounting Details by Segment.xls checksum:f405903f402679e925fc4fbc3028a204
+     [java] add file : /Common/DEMO_J_12(セグメント別個別).xls
+     [java] /Common/DEMO_J_12(セグメント別個別).xls checksum:4219b9123e75e378d02e340065398582
+     [java] add file : /Common/[項目抽出]レポート_会計処理基準.xls
+     [java] /Common/[項目抽出]レポート_会計処理基準.xls checksum:4764aea10409aa0ee178066d71d3ec2f
+     [java] add file : /Common/DEMO_J_14(相手先別明細).xls
+     [java] /Common/DEMO_J_14(相手先別明細).xls checksum:dc60ed082b6e7b1709db83633077aa28
+     [java] add file : /Common/[項目抽出]レポート.xls
+     [java] /Common/[項目抽出]レポート.xls checksum:8c75fa6ac8e6ca518375236e5e97465b
+     [java] directory already exists.
+     [java] add file : /Common/65F_Adjusting Tax Statement.xls
+     [java] /Common/65F_Adjusting Tax Statement.xls checksum:5080a1e2574e4143b2c698d3b90f196b
+     [java] add file : /Common/[項目抽出]J07_1_名古屋.xls
+     [java] /Common/[項目抽出]J07_1_名古屋.xls checksum:c86d82841155f591ae843ad3b077d821
+     [java] add file : /Common/610_Collateral Details.xls
+     [java] /Common/610_Collateral Details.xls checksum:8f9a51dc9aeb79ef4ec66b970f343175
+     [java] add file : /Common/EIGS_SAMPLE_税効果会計明細.xls
+     [java] /Common/EIGS_SAMPLE_税効果会計明細.xls checksum:8a99b9ebe48b2f3efef1ec297bfb6fad
+     [java] add file : /Common/685_Investment Properties.xls
+     [java] /Common/685_Investment Properties.xls checksum:16a6ed387f71fb60ea5f7a718c79941c
+     [java] add file : /Common/EIGS_SAMPLE_個別財務諸表.xls
+     [java] /Common/EIGS_SAMPLE_個別財務諸表.xls checksum:9bead39c5791fa50f93f1de7f66d91f8
+     [java] add file : /Common/②子会社利益差異分析/#目的、使用方法.txt
+     [java] /Common/②子会社利益差異分析/#目的、使用方法.txt checksum:3f5f2e0cf18453cd2c5cf5e04233d6de
+     [java] add file : /Common/②子会社利益差異分析/PL_Analysis.XLS
+     [java] /Common/②子会社利益差異分析/PL_Analysis.XLS checksum:74776f4c9755a0dc77532c9082953d2d
+     [java] add file : /Common/②子会社利益差異分析/子会社業績管理_セグメント業績レポート.xls
+     [java] /Common/②子会社利益差異分析/子会社業績管理_セグメント業績レポート.xls checksum:978ed392626341dc0112d77139e61a6a
+     [java] add file : /Common/②子会社利益差異分析/子会社業績管理_損益分析レポート.XLS
+     [java] /Common/②子会社利益差異分析/子会社業績管理_損益分析レポート.XLS checksum:a3803f7cdb501582b8c07682e8e47806
+     [java] add file : /Common/③子会社での修正仕訳機能/#目的、使用方法.txt
+     [java] /Common/③子会社での修正仕訳機能/#目的、使用方法.txt checksum:89e25cea20d00ae11505800db0a81f31
+     [java] directory already exists.
+     [java] add file : /Common/③子会社での修正仕訳機能/【参考】デモ用追加情報定義.xls
+     [java] /Common/③子会社での修正仕訳機能/【参考】デモ用追加情報定義.xls checksum:8e0cc063b966c147ea19987497f27eea
+     [java] add file : /Common/①計画・予算系/#目的、使用方法.txt
+     [java] /Common/①計画・予算系/#目的、使用方法.txt checksum:5fe70e6d2e5fda8c19719720f504bcae
+     [java] add file : /Common/①計画・予算系/計画・予算系EIGSデモシナリオ.XLS
+     [java] /Common/①計画・予算系/計画・予算系EIGSデモシナリオ.XLS checksum:b82de6678282bef0c1662932e84a9d1f
+     [java] directory already exists.
+     [java] add file : /Common/○お客様シート/CustomerSheet3.xls
+     [java] /Common/○お客様シート/CustomerSheet3.xls checksum:683c4648877eb07e6e5ece30766644e5
+     [java] add file : /Common/○お客様シート/CustomerSheet2.xls
+     [java] /Common/○お客様シート/CustomerSheet2.xls checksum:80fc24d457c739c4025631e792e0df8e
+     [java] add file : /Common/○お客様シート/CustomerSheet1.xls
+     [java] /Common/○お客様シート/CustomerSheet1.xls checksum:e9828356c4d3682d23f769acbdc46187
+     [java] add file : /Common/○お客様シート/言語共通ファイル（Common）.txt
+     [java] /Common/○お客様シート/言語共通ファイル（Common）.txt checksum:d41d8cd98f00b204e9800998ecf8427e
+     [java] add file : /Common/③子会社での修正仕訳機能/EIGSファイル/個別財務諸表2_TB累計、修正後FS.xls
+     [java] /Common/③子会社での修正仕訳機能/EIGSファイル/個別財務諸表2_TB累計、修正後FS.xls checksum:9711d2ff2b6ba3c882c90dd796c954a9
+     [java] add file : /Common/③子会社での修正仕訳機能/EIGSファイル/日本語ファイル（Ja）.txt
+     [java] /Common/③子会社での修正仕訳機能/EIGSファイル/日本語ファイル（Ja）.txt checksum:d41d8cd98f00b204e9800998ecf8427e
+     [java] add file : /Common/③子会社での修正仕訳機能/EIGSファイル/個別財務諸表1_科目変換定義.xls
+     [java] /Common/③子会社での修正仕訳機能/EIGSファイル/個別財務諸表1_科目変換定義.xls checksum:f314dc152a72dcfe81b4d2e3c7540a16
+     [java] add file : /Common/①計画・予算系/EIGSファイル/日本語ファイル（Ja）.txt
+     [java] /Common/①計画・予算系/EIGSファイル/日本語ファイル（Ja）.txt checksum:d41d8cd98f00b204e9800998ecf8427e
+     [java] add file : /Common/①計画・予算系/EIGSファイル/計画・予算系デモシート.XLS
+     [java] /Common/①計画・予算系/EIGSファイル/計画・予算系デモシート.XLS checksum:8dcdcea0161abb081ad6a7d1f7e57ace
 
 BUILD SUCCESSFUL
-Total time: 3 seconds
+Total time: 7 seconds
